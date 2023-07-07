@@ -80,9 +80,27 @@ button:hover {
 #right-container {
     flex: 2;
     margin-left: 20px;
+    font-size: 24px;
 }
 
-#right-container
+#forecast-content,#current-weather-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    
+}
+
+
+#forecast-content div, #current-weather-content div {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 30px 0px;
+    text-align: center;
+    box-shadow: 0px 0px 2px 2px;
+}
+
 
 #current-weather, #forecast {
     background-color: white;

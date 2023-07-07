@@ -63,6 +63,7 @@ function showCurrentWeather(data) {
     currentWeatherEl.innerHTML = ''
 
     //data we will need to display
+    var cityName = data.city.name;
     var temperature = data.list[0].main.temp;
     var humidity = data.list[0].main.humidity;
     var windSpeed = data.list[0].wind.speed;
@@ -70,6 +71,12 @@ function showCurrentWeather(data) {
 
     //creating dynamic html elements with the data we have gathered
     //Setting the textContent of these elements to the specific data values we have gathered
+    var currentCard = document.createElement('div');
+
+    var cityEl = document.createElement('h3');
+    cityEl.textContent = cityName;
+
+
     var temperatureEl = document.createElement('p');
     temperatureEl.textContent = 'Temperature: ' + temperature + '°F';
 
@@ -83,10 +90,13 @@ function showCurrentWeather(data) {
     weatherIconEl.src = `http://openweathermap.org/img/w/${weatherIcon}.png`;
 
     //Appending new elements to current weather section
-    currentWeatherEl.appendChild(weatherIconEl);
-    currentWeatherEl.appendChild(temperatureEl);
-    currentWeatherEl.appendChild(humidityEl);
-    currentWeatherEl.appendChild(windEl)
+    currentCard.appendChild(cityEl)
+    currentCard.appendChild(weatherIconEl);
+    currentCard.appendChild(temperatureEl);
+    currentCard.appendChild(windEl)
+    currentCard.appendChild(humidityEl);
+    
+    currentWeatherEl.append(currentCard)
 }
 
 //Function to display the five day forecast
