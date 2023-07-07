@@ -25,8 +25,12 @@
   N/A
 
   ## ScreenShots
+  
+<img width="1511" alt="Screenshot 2023-07-07 at 12 34 32 PM" src="https://github.com/joshsandquist/weather-dashboard/assets/104536533/be2a38ce-cdaa-4973-bdde-ab00b2be622a">
 
   ## GitHub Repo
+
+  https://github.com/joshsandquist/weather-dashboard
 
   ## Deployed Application
 
