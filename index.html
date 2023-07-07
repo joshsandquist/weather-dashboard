@@ -11,31 +11,34 @@
         <h1>5-Day Weather Forecast</h1>
     </header>
     <main>
-        <section id= 'search'>
-            <h2>Search for a City</h2>
-            <form id="search-form">
-                <input type="text" id="city-input" placeholder="Phoenix">
-                <button type="submit">Search</button>
-            </form>
-        </section>
-        <section id="search-history">
-            <h2>Previous Searches</h2>
-            <div id="search-history-content">
-                
-            </div>
-        </section>
-        <section id="current-weather">
-            <h2>Current Weather</h2>
-            <div id="current-weather-content">
-
-            </div>
-        </section>
-        <section id="forecast">
-            <h2>5-Day Forecast</h2>
-            <div id="forecast-content">
-
-            </div>
-        </section>
+        <div id="left-container">
+        
+            <section id= 'search'>
+                <h2>Search for a City</h2>
+                <form id="search-form">
+                    <input type="text" id="city-input" placeholder="Phoenix">
+                    <button type="submit">Search</button>
+                </form>
+            </section>
+            <section id="search-history">
+                <h2>Previous Searches</h2>
+                <div id="search-history-content">
+        
+                </div>
+            </section>
+    </div>
+        <div id="right-container">
+            <section id="current-weather">
+                <h2>Current Weather</h2>
+                <div id="current-weather-content">
+                </div>
+            </section>
+            <section id="forecast">
+                <h2>5-Day Forecast</h2>
+                <div id="forecast-content">
+                </div>
+            </section>
+        </div>
     </main>
     <script src="./assets/script.js"></script>
 </body>
