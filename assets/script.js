@@ -155,3 +155,29 @@ function saveSearchHistory(city) {
     }
 
 }
+
+//Function to display search history from local storage
+function showSearchHistory() {
+    var searchHistoryEl = document.getElementById('search-history-content');
+    //setting element to empty string to clear out data
+    searchHistoryEl.innerHTML = ''
+
+    //retrieving search history from local storage
+    var searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    //itterating through each element in search history to display individually
+    for (var i = 0; i < searchHistory.length; i++) {
+        var cityName = searchHistory[i];
+        //making the search history into a button so that it can be clicked to retrieve data again
+        var historyItem = document.createElement('button');
+        //setting button name to cityName
+        historyItem.textContent = cityName;
+        //adding an event to each button that will run getcoordinates function, with the text content used to make our API call again
+        historyItem.addEventListener('click', function() {
+            getCoordinates(this.textContent);
+        });
+        //Appending a button to our container for each element retrieved
+        searchHistoryEl.appendChild(historyItem);
+    }
+}
+
+showSearchHistory();
