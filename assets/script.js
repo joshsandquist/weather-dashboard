@@ -103,7 +103,18 @@ function showFiveDay(data) {
     var forecastData = data.list[i];
 
     // Data that we want returned from the 5-day forecast
-    var date = forecastData.dt_txt;
+    // We waant to be able to format this data in a cleaner way for the user
+    var forecastDate = new Date(forecastData.dt_txt);
+
+    // getting each individual date element that we want to use
+    var year = forecastDate.getFullYear();
+    // Have to add 1 here because getMonth returns starting at 0 (so we want January to display as 1, not 0)
+    var month = forecastDate.getMonth() + 1;
+    var date = forecastDate.getDate();
+
+    // Making our gathered data into a single formatted string
+    var formattedDate = month + '/' + date + '/' + year;
+
     var temperature = forecastData.main.temp;
     var windSpeed = forecastData.wind.speed;
     var humidity = forecastData.main.humidity;
@@ -114,7 +125,7 @@ function showFiveDay(data) {
     
     //Gathering date, will need to format better later on
     var dateEl = document.createElement('h3');
-    dateEl.textContent = date;
+    dateEl.textContent = formattedDate;
 
     var temperatureEl = document.createElement('p');
     temperatureEl.textContent = 'Temperature: ' + temperature + '°F';
