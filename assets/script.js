@@ -38,7 +38,7 @@ function getCoordinates(city) {
 
 function getWeather(lat, lon) {
     //new API search string using lat and lon data to get more data
-    var weatherAPI =`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}`;
+    var weatherAPI =`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`;
     //using api search string to return all the data we will need
     fetch(weatherAPI)
     .then(function(response) {
@@ -69,7 +69,7 @@ function showCurrentWeather(data) {
     //creating dynamic html elements with the data we have gathered
     //Setting the textContent of these elements to the specific data values we have gathered
     var temperatureEl = document.createElement('p');
-    temperatureEl.textContent = 'Temperature: ' + temperature;
+    temperatureEl.textContent = 'Temperature: ' + temperature + '°F';
 
     var humidityEl = document.createElement('p');
     humidityEl.textContent = 'Humidity: ' + humidity + '%';
@@ -85,4 +85,10 @@ function showCurrentWeather(data) {
     currentWeatherEl.appendChild(temperatureEl);
     currentWeatherEl.appendChild(humidityEl);
     currentWeatherEl.appendChild(windEl)
+}
+
+//Function to display the five day forecast
+function showFiveDay(data) {
+    //data returned from our api call comes in 3 hour increments, so we need to itterate through this to get one per day
+
 }
