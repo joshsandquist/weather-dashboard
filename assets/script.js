@@ -53,3 +53,36 @@ function getWeather(lat, lon) {
         alert('Error:' + error)
     })
 }
+
+//function to show current weather, takes in data from previous search as a paramater
+function showCurrentWeather(data) {
+    //selection current weather section and setting data to empty initially
+    var currentWeatherEl = document.getElementById('current-weather');
+    currentWeatherEl.innerHTML = ''
+
+    //data we will need to display
+    var temperature = data.list[0].main.temp;
+    var humidity = data.list[0].main.humidity;
+    var windSpeed = data.list[0].wind.speed;
+    var weatherIcon = data.list[0].weather[0].icon;
+
+    //creating dynamic html elements with the data we have gathered
+    //Setting the textContent of these elements to the specific data values we have gathered
+    var temperatureEl = document.createElement('p');
+    temperatureEl.textContent = 'Temperature: ' + temperature;
+
+    var humidityEl = document.createElement('p');
+    humidityEl.textContent = 'Humidity: ' + humidity + '%';
+
+    var windEl = document.createElement('p');
+    windEl.textContent = 'Wind Speed: ' + windSpeed +' MPH';
+    //making a url string with the data we have gathered and setting it to the source of our icon image
+    var weatherIconEl = document.createElement('img');
+    weatherIconEl.src = `http://openweathermap.org/img/w/${weatherIcon}.png`;
+
+    //Appending new elements to current weather section
+    currentWeatherEl.appendChild(weatherIconEl);
+    currentWeatherEl.appendChild(temperatureEl);
+    currentWeatherEl.appendChild(humidityEl);
+    currentWeatherEl.appendChild(windEl)
+}
