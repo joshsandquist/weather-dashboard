@@ -57,7 +57,7 @@ function getWeather(lat, lon) {
 //function to show current weather, takes in data from previous search as a paramater
 function showCurrentWeather(data) {
     //selection current weather section and setting data to empty initially
-    var currentWeatherEl = document.getElementById('current-weather');
+    var currentWeatherEl = document.getElementById('current-weather-content');
     currentWeatherEl.innerHTML = ''
 
     //data we will need to display
@@ -89,6 +89,51 @@ function showCurrentWeather(data) {
 
 //Function to display the five day forecast
 function showFiveDay(data) {
-    //data returned from our api call comes in 3 hour increments, so we need to itterate through this to get one per day
+    //declaring forecast section and setting its data to an empty string to start
+    var forecastEl = document.getElementById('forecast-content');
+    forecastEl.innerHTML = ''
 
+    //data returned from our api call comes in 3 hour increments, so we need to iterate through this to get one per day
+    //Starting our data 8 data points out (one full day) and then moving to the next data entry another full day out
+    //This will give us one entry per day for 5 days.
+    for (var i = 7; i < data.list.length; i+=8) {
+
+    var forecastData = data.list[i];
+
+    // Data that we want returned from the 5-day forecast
+    var date = forecastData.dt_txt;
+    var temperature = forecastData.main.temp;
+    var windSpeed = forecastData.wind.speed;
+    var humidity = forecastData.main.humidity;
+    var weatherIcon = forecastData.weather[0].icon;
+
+    //creating a card for each returned day's data
+    var forecastCard = document.createElement('div');
+    
+    //Gathering date, will need to format better later on
+    var dateEl = document.createElement('h3');
+    dateEl.textContent = date;
+
+    var temperatureEl = document.createElement('p');
+    temperatureEl.textContent = 'Temperature: ' + temperature + '°F';
+
+    var windEl = document.createElement('p');
+    windEl.textContent = 'Wind Speed: ' + windSpeed + ' MPH';
+
+    var humidityEl = document.createElement('p');
+    humidityEl.textContent = 'Humidity: ' + humidity + '%';
+
+    var weatherIconEl = document.createElement('img');
+    weatherIconEl.src = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
+
+    //Appending new elements to card, and then to forecast section
+    forecastCard.appendChild(dateEl);
+    forecastCard.appendChild(weatherIconEl);
+    forecastCard.appendChild(temperatureEl);
+    forecastCard.appendChild(windEl);
+    forecastCard.appendChild(humidityEl);
+
+    forecastEl.appendChild(forecastCard);
+    
+    }
 }
