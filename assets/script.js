@@ -25,6 +25,8 @@ function getCoordinates(city) {
             var lat = data[0].lat;
             var lon = data[0].lon;
             getWeather(lat,lon)
+            //saving the searched city into local storage
+            saveSearchHistory(city)
         }
         else {
             alert('City not found!')
@@ -136,4 +138,20 @@ function showFiveDay(data) {
     forecastEl.appendChild(forecastCard);
     
     }
+}
+
+//Function to save search history to local storage
+function saveSearchHistory(city) {
+    // first getting local storage if any items exist, if not retrieveing an empty array
+    var searchHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    //checking to see if city already exists within local storage before adding
+    if (searchHistory.indexOf(city) === -1) {
+        //pushing searched city into searchHistory
+        searchHistory.push(city);
+        //setting search history with newly created data
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+        //function that will display search history after new data is added
+        showSearchHistory();
+    }
+
 }
