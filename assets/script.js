@@ -20,7 +20,7 @@ function getCoordinates(city) {
         return response.json();
     })
     .then(function(data) {
-        //returning the lattitude and longitude data from our search to be used in future function
+        //returning the lattitude and longitude data from our search to be used in future function 
         if (data.length > 0) {
             var lat = data[0].lat;
             var lon = data[0].lon;
@@ -37,5 +37,19 @@ function getCoordinates(city) {
 }
 
 function getWeather(lat, lon) {
+    //new API search string using lat and lon data to get more data
     var weatherAPI =`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}`;
+    //using api search string to return all the data we will need
+    fetch(weatherAPI)
+    .then(function(response) {
+        return response.json();
+    })
+    //Passing in retrieved data into two new functions, one to get current weather and one to get future forecast.
+    .then(function(data) {
+        showCurrentWeather(data);
+        showFiveDay(data);
+    })
+    .catch(function(error) {
+        alert('Error:' + error)
+    })
 }
